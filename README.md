@@ -87,7 +87,7 @@ Set of steps to showcase how Bazaar services are consumed, same as any other ser
 1. Create Mino service
     - Use AppsManager UI or run the following command:
     ```
-    cf cs -h minio default Minio
+    cf cs minio default Minio
     ```
     - Check that minio deployment, por and service are successfully created in k8s. Bazaar creates a new namespace with `kibosh` prefix.
     ```
