@@ -127,7 +127,8 @@ Set of steps to showcase how Bazaar services are consumed, same as any other ser
 
 1. Test application
     - Open app URL in the browser
-    - You should see a screen like This
+    - You should see a screen like this:
+    ![minio-emo-image](./images/minio-demo.png)
     - The first time you access the app after deployment there should be no files
     - Copy the `mc` command and run it. It should look like this.
     ```
