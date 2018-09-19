@@ -1,0 +1,97 @@
+# Bazaar demo
+This Demo has been prepared to work with Bazaar `v0.0.3`.
+You need both PAS and PKS to run this demo.
+
+## Preparation
+These steps should be completed before delivering the demo
+
+1. Clone kibosh-sample repo
+    - https://github.com/cf-platform-eng/kibosh-sample
+    - We will use it to get sample Helm charts
+
+1. Install Bazaar CLI
+    - https://github.com/cf-platform-eng/kibosh/releases
+
+1. Download Bazaar tile
+    - https://storage.googleapis.com/kibosh-public/bazaar-chart-0.0.3.pivotal
+
+1. Install Bazaar tile
+    - Upload to Ops Manager
+    - Configure tile with PKS cluster credentials.
+      - All credentials can be extracted from the kubeconfig.
+      - Cluster CA certificate: remember kubeconfig has it encoded in base64 so you have to decode it.
+      - K8S API endpoint: with `http://`.
+      - Cluster JWT token: locate the user uuid assigned to your cluster, then look for its token.
+    - Apply changes
+    - Before creating any service with Bazaar
+      - Make sure that the k8s cluster has a storage class with name standard
+
+1. Install Minio app utils
+    - 
+
+## Bazaar demo
+First set of steps to show how to use Bazaar to manage helm charts and add services to the Marketplace
+
+1. Get Bazaar API Credentials
+    - Go to the Bazaar tile -> Credentials tab -> Bazaar Api Credentials: get User and Password
+    - We will use these credentials with the Bazaar CLI
+
+1. List Charts with Bazaar CLI:
+    - Run this command:
+    ```
+    bazaarcli -t http://bazaar.<SYSTEM-DOMAIN> -u <BAZAAR-API-USER> -p <BAZAAR-API-PASSWORD> list
+    ```
+
+    - Example:
+    ```
+    bazaarcli -t http://bazaar.run.haas-141.pez.pivotal.io -u 'bazaar_api_admin' -p 'jHO_zfuTx3K_YcF0PB6oWOEOfdSsGitQ' list
+    ```
+
+1. Save Chart with Bazaar CLI:
+    - Choose one of the Sample Charts from the `kibosh-sample` repo (cloned during the prep steps).
+      - If the Minio Chart hasn't been saved yet, then use that one since you'll need it later in this demo.
+      - If you want to use another Helm Chart from the Stable repo you will have to do a few customizations before Bazaar can use it. At least:
+        - Service must be `type: LoadBalancer`
+        - Need plans directory and some plans
+    - Run this command:
+    ```
+    bazaarcli -t http://bazaar.<SYSTEM-DOMAIN> -u <BAZAAR-API-USER> -p <BAZAAR-API-PASSWORD> save chart.tgz
+    ```
+    - Example:
+    ```
+    bazaarcli -t http://bazaar.run.haas-141.pez.pivotal.io -u 'bazaar_api_admin' -p 'jHO_zfuTx3K_YcF0PB6oWOEOfdSsGitQ' save ./sample-charts/mysql-0.8.2.tgz
+    ```
+    - This registers the services in the Marketplace and associates it to the Bazaar broker.
+
+1. Enable service in the marketplace
+    - Enable service access to PAS Marketplace users:
+    ```
+    cf enable-service-access mysql
+    ```
+    - Check the service is now available in the Marketplace via UI or CLI:
+    ```
+    cf marketplace
+    ```
+    - Reflect on the value provided by enabling Bazaar users (devs, devops) to add new services in the Marketplace that are deployed in k8s (PKS) and without having to deploy an entire tile per service. Just using standard Helm Charts.
+
+## Minio Service Demo
+Set of steps to showcase how Bazaar services are consumed, same as any other service in the Marketplace. We will use Minio service as example.
+
+1. Create Mino service
+
+1. Prepare Minio app
+    - Build
+    -
+
+## Cleanup after demo
+These steps are recommended so that the next PA finds the environment more ready to follow all the above steps.
+
+1. Remove any Chart from Bazaar except the Minio Chart.
+    - Run this command for each chart:
+    ```
+    bazaarcli -t http://bazaar.<SYSTEM-DOMAIN> -u <BAZAAR-API-USER> -p <BAZAAR-API-PASSWORD> delete mysql
+    ```
+    - Example:
+    ```
+    bazaarcli -t http://bazaar.run.haas-141.pez.pivotal.io -u 'bazaar_api_admin' -p 'jHO_zfuTx3K_YcF0PB6oWOEOfdSsGitQ' delete mysql
+    ```

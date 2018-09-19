@@ -1,0 +1,61 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<div class="container-fluid">
+  <div class="jumbotron">
+    <h1 class="page-header">
+      Welcome to {{ title }}!
+    </h1>
+  </div>
+  <!-- div *ngIf="info">
+    <table>
+      <tr>
+          <td>URL</td><td> {{ info.url }} </td>
+      </tr>
+      <tr>
+          <td>Port</td><td> {{ info.port }} </td>
+      </tr>
+      <tr>
+          <td>Access Key</td><td> {{ info.accessKey }} </td>
+      </tr>
+      <tr>
+          <td>Secret Key</td><td> {{ info.secretKey }} </td>
+      </tr>
+    </table>
+  </div -->
+  <div *ngIf="info">
+    <div class="row">
+      <h3>Configure Minio client</h3>
+    </div>
+    <div class="row">
+      <pre class="mark">mc config host add minio http://{{info.url}}:{{info.port}} '{{info.accessKey}}' '{{info.secretKey}}'</pre>
+    </div>
+  </div>
+  <div>
+    <div class="row">
+      <h3>Contents of the minio-demo bucket:</h3>
+    </div>
+    <div class="row">
+      <div class="col-8">
+        <div class="table-responsive" *ngIf="files">
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Last Modified</th>
+                <th>Etag</th>
+                <th>Size</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let file of files">
+                <td>{{ file.name }}</td>
+                <td>{{ file.lastModified }}</td>
+                <td>{{ file.etag }}</td>
+                <td>{{ file.size }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,7 @@
+---
+applications:
+- name: minio-demo
+  memory: 512M
+  command: node server.js
+  services:
+  - minio
