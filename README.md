@@ -26,8 +26,15 @@ These steps should be completed before delivering the demo
     - Before creating any service with Bazaar
       - Make sure that the k8s cluster has a storage class with name standard
 
-1. Install Minio app utils
-    -
+1. Install Minio client
+    - Follow instructions here: https://www.minio.io/downloads.html#download-client
+    
+1. Install Node tools
+    - Make sure you have `node` and `npm` installed. Follow instructions here: https://nodejs.org/en/download/
+    - Install the Angular CLI:
+    ```
+    npm install -g angular-cli
+    ```
 
 ## Bazaar demo
 First set of steps to show how to use Bazaar to manage helm charts and add services to the Marketplace
@@ -99,12 +106,6 @@ Set of steps to showcase how Bazaar services are consumed, same as any other ser
     ```
 
 1. Prepare Minio app
-    - Make sure you have `node` and `npm` installed
-    - Install the Angular CLI:
-    ```
-    npm install -g angular-cli
-    ```
-    - Install Minio client: https://www.minio.io/downloads.html#download-client
     - Go inside the `minio-demo` folder of this repo.
     ```
     cd minio-demo
