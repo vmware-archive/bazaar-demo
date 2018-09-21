@@ -12,25 +12,28 @@ export class AppComponent implements OnInit {
   private files;
   constructor(private apiService: APIService) { }
   ngOnInit() {
-    this.getInfo();
-    this.prepareBucket();
-    this.readBucket();
+    this.getAllData();
   }
   public getInfo() {
-    this.apiService.getInfo().subscribe((data: object) => {
+    return this.apiService.getInfo().subscribe((data: object) => {
       this.info = data;
       console.log(data);
-    })
+    });
   }
   public prepareBucket() {
-    this.apiService.prepareBucket().subscribe((data: object) => {
+    return this.apiService.prepareBucket().subscribe((data: object) => {
       console.log(data);
-    })
+    });
   }
   public readBucket() {
-    this.apiService.readBucket().subscribe((data: object) => {
+    return this.apiService.readBucket().subscribe((data: object) => {
       this.files = data;
       console.log(data);
-    })
+    });
+  }
+  async getAllData() {
+    await this.getInfo();
+    await this.prepareBucket();
+    await this.readBucket();
   }
 }

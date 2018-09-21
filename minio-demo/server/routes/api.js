@@ -33,18 +33,28 @@ router.get('/info', function(request, response) {
 });
 
 router.get('/create-bucket', function(request, response) {
-  minioClient.bucketExists('minio-demo', function(error1) {
+  var exists = minioClient.bucketExists('minio-demo', function(error1) {
     if (error1) {
-      console.log("minio-demo bucket doesn't exist");
-      minioClient.makeBucket('minio-demo', function(error2) {
-        if (error2) console.log(error2);
-        else console.log("minio-demo bucket created successfully");
-        response.send('{"result": "minio-demo bucket created successfully"}');
-      });
+      console.log(error1);
+      response.send('{"result": "error: '+error1+'"}');
     }
+  });
+  if (exists) {
     console.log("minio-demo already exists");
     response.send('{"result": "minio-demo already exists"}');
-  });
+  } else {
+    console.log("minio-demo bucket doesn't exist");
+    minioClient.makeBucket('minio-demo', function(error2) {
+      if (error2) {
+        console.log(error2);
+        response.send('{"result": "error: '+error2+'"}');
+      }
+      else {
+        console.log("minio-demo bucket created successfully");
+        response.send('{"result": "minio-demo bucket created successfully"}');
+      }
+    });
+  }
 });
 
 router.get('/get-bucket-content', function(request, response) {
