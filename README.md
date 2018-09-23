@@ -2,6 +2,12 @@
 This Demo has been prepared to work with Bazaar `v0.0.3`.
 You need both PAS and PKS to run this demo.
 
+[Preparation](#Preparation)
+
+[Bazaar Demo](#Bazaar Demo)
+
+[Minio Service Demo](#Minio Service Demo)
+
 ## Preparation
 These steps should be completed before delivering the demo
 
@@ -17,8 +23,7 @@ These steps should be completed before delivering the demo
 
 1. Install Bazaar tile
     - Upload to Ops Manager
-    - Configure tile with PKS cluster credentials.
-      - All credentials can be extracted from the kubeconfig.
+    - Configure tile with PKS cluster credentials. All credentials can be extracted from the kubeconfig.
       - Cluster CA certificate: remember kubeconfig has it encoded in base64 so you have to decode it.
       - K8S API endpoint: with `http://`.
       - Cluster JWT token: locate the user uuid assigned to your cluster, then look for its token.
@@ -28,7 +33,7 @@ These steps should be completed before delivering the demo
 
 1. Install Minio client
     - Follow instructions here: https://www.minio.io/downloads.html#download-client
-    
+
 1. Install Node tools
     - Make sure you have `node` and `npm` installed. Follow instructions here: https://nodejs.org/en/download/
     - Install the Angular CLI:
@@ -36,7 +41,7 @@ These steps should be completed before delivering the demo
     npm install -g angular-cli
     ```
 
-## Bazaar demo
+## Bazaar Demo
 First set of steps to show how to use Bazaar to manage helm charts and add services to the Marketplace
 
 1. Get Bazaar API Credentials
