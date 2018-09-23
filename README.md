@@ -4,9 +4,9 @@ You need both PAS and PKS to run this demo.
 
 [Preparation](#Preparation)
 
-[Bazaar Demo](#Bazaar Demo)
+[Bazaar Demo](#Bazaar-Demo)
 
-[Minio Service Demo](#Minio Service Demo)
+[Minio Service Demo](#Minio-Service-Demo)
 
 ## Preparation
 These steps should be completed before delivering the demo
