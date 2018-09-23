@@ -2,11 +2,11 @@
 This Demo has been prepared to work with Bazaar `v0.0.3`.
 You need both PAS and PKS to run this demo.
 
-[Preparation](##Preparation)
+[Preparation](#preparation)
 
-[Bazaar Demo](##Bazaar-Demo)
+[Bazaar Demo](#bazaar-demo-1)
 
-[Minio Service Demo](##Minio-Service-Demo)
+[Minio Service Demo](#minio-service-demo)
 
 ## Preparation
 These steps should be completed before delivering the demo
